@@ -1,41 +1,25 @@
-datosGenerales = {
-  'nombre': 'Juan',
-  'apellido_paterno': 'Pérez',
-  'apellido_materno': 'García',
-  'edad': 20,
-  'direccion': {
-    'calle': 'Del olvido',
-    'numero_exterior': 33,
-    'numero_interior': 5,
-    'colonia': 'Niño Perdido',
-    'c_p': 12345,
-    'ciudad': 'Acapulco',
-    'estado': 'Guerrero',
-    'pais': 'México',
-  },
-  'matricula': 19283746,
-  'semestre': 2,
-  'materias': {
-    'ingles_2': {
-      'profesor': 'Manuel Rodríguez',
-      'creditos': 6,
-    },
-    'algebra_elemental': {
-      'profesor': 'Rodolfo García',
-      'creditos': 4,
-    },
-  },
-}
+# Programa que pida datos de modelos de automóviles y los registre en una
+# base de datos para después mostrarlos al usuario
 
-print('{')
-for key, value in datosGenerales.items():
-  if type(value) == dict:
-    print(f'\t{key}:{{'.expandtabs(2))
-    for subkey, subvalue in value.items():
-      print(f'\t\t{subkey}: {subvalue}'.expandtabs(2))
-    print('\t}'.expandtabs(2))
-  else:
-    print(f'\t{key}: {value}'.expandtabs(2))
-print('}')
+cars = []
 
-print(f'Profesor de la materia Inglés 1: {datosGenerales["materias"]["ingles_2"]["profesor"]}')
+while True:
+  brand = input('Marca: ')
+  model = input('Modelo: ')
+  year = int(input('Año: '))
+  color = input('Color: ')
+  new_car = {
+    "brand": brand,
+    "model": model,
+    "year": year,
+    "color": color
+  }
+  cars.append(new_car)
+  opc = input('Agregar otro automóvil? (s/n): ')
+  if opc.lower() == 'n':
+    break
+
+print('Mostrando lista de automóviles...')
+print(cars)
+  
+
