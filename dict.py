@@ -49,7 +49,7 @@ car_features = [
         "transmission": "Transmishostli",  # F
         "rin": "Rintl",  # M
         "speed": "Velocidoshtli",  # F
-        "cylinder": "Cilindrotl"  # M
+        "cylinder": "Cilindrotl"  # F
     },
 ]
 
@@ -119,23 +119,39 @@ def add_car():
             ''')
                 feature = input('Elige una característica: ')
                 if feature.lower() == 'a':
-                    doors = int(input('Número de puertas: '))
-                    modify_car(new_car, "doors", doors)
+                    if 'doors' in new_car:
+                        print('¡Ya has agregado esta característica!')
+                    else:
+                        value = int(input('Número de puertas: '))
+                        key = 'doors'
                 elif feature.lower() == 'b':
-                    transmission = input(
-                        'Tipo de transmisión (automática/estándar): ')
-                    modify_car(new_car, "transmission", transmission)
+                    if 'transmission' in new_car:
+                        print('¡Ya has agregado esta característica!')
+                    else:
+                        value = input(
+                            'Tipo de transmisión (automática/estándar): ')
+                        key = 'transmission'
                 elif feature.lower() == 'c':
-                    rin = input('Diámetro de rines: ')
-                    modify_car(new_car, "rin", rin)
+                    if 'rin' in new_car:
+                        print('¡Ya has agregado esta característica!')
+                    else:
+                        value = input('Diámetro de rines: ')
+                        key = 'rin'
                 elif feature.lower() == 'd':
-                    speed = input('Velocidad máxima: ')
-                    modify_car(new_car, "speed", speed)
+                    if 'speed' in new_car:
+                        print('¡Ya has agregado esta característica!')
+                    else:
+                        value = input('Velocidad máxima: ')
+                        key = 'speed'
                 elif feature.lower() == 'e':
-                    cylinder = int(input('Cilindraje: '))
-                    modify_car(new_car, "cylinder", cylinder)
+                    if 'cylinder' in new_car:
+                        print('¡Ya has agregado esta característica!')
+                    else:
+                        value = int(input('Cilindraje: '))
+                        key = 'cylinder'
             elif opc.lower() == 'n':
                 break
+            modify_car(new_car, key, value)
         cars.append(new_car)
         opc = input('Agregar otro automóvil? (s/n): ')
         if opc.lower() == 'n':
@@ -169,8 +185,12 @@ def edit_car():
     if 1 <= opc <= len(car):
         list_car_keys = list(car_keys)
         key = list_car_keys[opc - 1]
-        if key == 'brand' or key == 'doors' or key == 'transmission' or key == 'speed':
+        if key == 'brand' or key == 'transmission' or key == 'speed':
             msg = 'la nueva'
+        elif key == 'doors':
+            msg = "el nuevo número de"
+        elif key == 'rin':
+            msg = 'el nuevo diámetro de'
         else:
             msg = 'el nuevo'
         feature = input(f'Escribe {msg} {car_features[0][key].lower()}: ')
