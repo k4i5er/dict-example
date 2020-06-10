@@ -11,9 +11,8 @@
 
 import sys
 
-# {'brand': 'Ford', 'model': 'Mustang', 'year': 2020, 'color': 'Rojo', 'doors': 4, 'rin': '16"', 'cylinder': 4}
-
-cars = []
+cars = [{'brand': 'Ford', 'model': 'Mustang', 'year': 2020,
+         'color': 'Rojo', 'doors': 4, 'rin': '16"', 'cylinder': 4}]
 car_features = [
     {
         "lang": "es",
@@ -108,7 +107,7 @@ def add_car():
         }
         while True:
             opc = input('¿Deseas agregar otra característica? (s/n): ')
-            if opc.lower() == 's':
+            if opc.lower() == 's' and len(new_car) < 9:
                 print('''
             Elige una de las siguientes características a agregar:
             a) Número de puertas
@@ -151,9 +150,13 @@ def add_car():
                         key = 'cylinder'
             elif opc.lower() == 'n':
                 break
-            modify_car(new_car, key, value)
+            if len(new_car) == 9:
+                print('¡Ya no puedes agregar más características!')
+                break
+            else:
+                modify_car(new_car, key, value)
         cars.append(new_car)
-        opc = input('Agregar otro automóvil? (s/n): ')
+        opc = input('¿Agregar otro automóvil? (s/n): ')
         if opc.lower() == 'n':
             break
     return
@@ -203,4 +206,104 @@ def edit_car():
 
 
 # edit_car()
-menu()
+# menu()
+
+# i = 0
+# for dic in car_features:
+#     print(dic)
+#     while i < len(dic):
+#         print('Diccionario!')
+#         i += 1
+#     i = 0
+
+
+# def get_num(n1, n2):
+
+#     return n1+5, n2+6, n1+n2
+
+
+# values = get_num(0, 2)
+# if values[0] > 5:
+#     print('No es menor a 5')
+
+# print(get_num(0, 2))
+
+# for i in range(1, 6):
+#     if i % 2 == 0:
+#         print('Par', i)
+#     elif i % 2 != 0:
+#         print('Impar', i)
+
+# Métodos de diccionarios
+car = {'brand': 'Ford', 'model': 'Mustang', 'year': 2020,
+       'color': 'Rojo', 'doors': 4, 'rin': '16"', 'cylinder': 4}
+# print(car)
+# Iterar sobre un diccionario
+# for llave in car:
+#     print(f'{llave}: {car[llave]}')
+
+# Obtener llaves de un diccionario
+# Obtenemos las llaves del diccionario y las convertimos a lista
+# print(list(car.keys()))
+
+# Obtener los valores de un diccionario
+# Obtenemos los valores del diccionario y los convertimos a lista
+# print(list(car.values()))
+
+
+# for i in range(0, len(car.keys())):
+#     print(f'{list(car.keys())[i]}: {list(car.values())[i]}')
+
+# # Agregar/modificar elementos en un diccionario
+# # Modifica el valor de la llave year
+# car['year'] = 2021
+# # Agrega la nueva llave horse_power y le asigna el valor 10000
+# car['horse_power'] = 10000
+# # Si la llave no existe, la crea y le asigna como valor None
+# print(car.setdefault('motor_type'))
+# print(car)
+# car['motor_type'] = 'v8'
+# print(car)
+# Agrega las llaves 'motor_type' y 'convertible', además actualiza la llave 'year'
+# car.update({'motor_type': 'v8', 'convertible': True, 'year': 2021})
+
+# Borrar todos los elementos de un diccionario
+# car.clear()
+print(car)
+
+# Copiar un diccionario
+# backup = car.copy()
+# car.clear()
+# print(car)
+# print(backup)
+
+# Crear un diccionario a partir de una lista o una tupla
+# llaves = ['uno', 'dos', 'tres']
+# valores = (3, 2, 1)
+# dic = dict.fromkeys(llaves, valores)
+# print(dic)
+
+# dic = {}
+# for i in range(0, len(llaves)):
+#     dic[llaves[i]] = valores[i]
+# print(dic)
+
+# Eliminar un elemento de un diccionario
+# car.pop('color')  # Elimina el elemento con la llave 'color'
+# car.popitem()  # Elimina el último elemento de un diccionario
+# print(car)
+
+# Obtener los elementos de un diccionario
+# print(list(car.items())[3][1])
+# list(car.items())[3][1] = 'Azul'
+
+
+# Método zip
+l1 = ['uno', 'dos', 'tres']
+l2 = [3, 2, 1]
+l = zip(l1, l2)
+t = list(l)
+# print(list(l)[0][1])
+for i in range(0, len(t)):
+    # print(i)
+    print(f'{t[i][0]}: {t[i][1]}')
